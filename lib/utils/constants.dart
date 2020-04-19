@@ -5,5 +5,6 @@ class Constants {
 
 class Routes {
   static const String CATEGORIES_MEALS = '/categories-meals';
+  static const String MEAL_DETAILS = '/meal-details';
   static const String HOME = '/';
 }
