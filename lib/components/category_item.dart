@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meals_flutter/utils/constants.dart';
 import 'package:meals_flutter/models/category.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -6,20 +8,36 @@ class CategoryItem extends StatelessWidget {
 
   const CategoryItem(this.category);
 
+  void _selectCategory(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      Routes.CATEGORIES_MEALS,
+      arguments: category,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(category.title),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-          colors: [
-            category.color.withOpacity(0.5),
-            category.color,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+    BorderRadius borderRadius = BorderRadius.circular(15);
+    return InkWell(
+      onTap: () => _selectCategory(context),
+      borderRadius: borderRadius,
+      splashColor: Theme.of(context).primaryColor,
+      child: Container(
+        child: Text(
+          category.title,
+          style: Theme.of(context).textTheme.title,
+        ),
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+          gradient: LinearGradient(
+            colors: [
+              category.color.withOpacity(0.5),
+              category.color,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
       ),
     );

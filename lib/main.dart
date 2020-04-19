@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_flutter/config/constants.dart';
+import 'package:meals_flutter/utils/constants.dart';
 import 'package:meals_flutter/screens/categories.dart';
+import 'package:meals_flutter/screens/categories_meals.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         accentColor: Colors.amber,
         fontFamily: Constants.primaryFontFamily,
+        canvasColor: Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
               title: TextStyle(
                 fontSize: 20,
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoriesScreen(),
+      routes: {
+        Routes.HOME: (context) => CategoriesScreen(),
+        Routes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen(),
+      },
     );
   }
 }
