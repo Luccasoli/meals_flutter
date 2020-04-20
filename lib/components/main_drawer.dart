@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals_flutter/utils/constants.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget _createItem(IconData icon, String label) {
+  Widget _createItem(IconData icon, String label, Function onTap) {
     return ListTile(
       leading: Icon(
         icon,
@@ -16,7 +16,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 
@@ -24,6 +24,8 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final statusBarHeight = MediaQuery.of(context).padding.top;
+    final navigator = Navigator.of(context);
+    final modalRoute = ModalRoute.of(context);
 
     return Drawer(
       child: Column(
@@ -49,10 +51,16 @@ class MainDrawer extends StatelessWidget {
           _createItem(
             Icons.restaurant,
             'Refeições',
+            modalRoute.settings.name == Routes.HOME
+                ? () => navigator.pop()
+                : () => navigator.pushReplacementNamed(Routes.HOME),
           ),
           _createItem(
             Icons.settings,
             'Configurações',
+            modalRoute.settings.name == Routes.SETTINGS
+                ? () => navigator.pop()
+                : () => navigator.pushReplacementNamed(Routes.SETTINGS),
           ),
         ],
       ),
