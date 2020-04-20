@@ -26,23 +26,26 @@ class MealItem extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  child: Image.network(
-                    meal.imageUrl,
-                    height: 230,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                Hero(
+                  tag: meal.id,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                    child: Image.network(
+                      meal.imageUrl,
+                      height: 230,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Positioned(
                   bottom: 20,
                   right: 0,
                   child: Container(
-                    width: 300,
+                    width: MediaQuery.of(context).size.width * 0.7,
                     color: Colors.black54,
                     padding: EdgeInsets.symmetric(
                       vertical: 5,
